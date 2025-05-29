@@ -1,9 +1,9 @@
 /**
- * REpresets the RQuery class for working with DOM elements.
+ * Represents the RQuery class for working with DOM elements.
  */
 class RQuery {
 	/**
-	 *Create a new RQuery instance.
+	 * Create a new RQuery instance.
 	 * @param {string|HTMLElement} selector - A CSS selector string or an HTMLElement.
 	 */
 	constructor(selector) {
@@ -34,6 +34,44 @@ class RQuery {
 			throw new Error(`Element ${selector} not found!`);
 		}
 	}
+
+	/**
+	 * Append a new element as a child of the selected element.
+	 * @param {HTMLElement} childElement - The new child element to append.
+	 * @returns {RQuery} The current RQuery instance for chaining.
+	 */
+	append(childElement) {
+		this.element.appendChild(childElement);
+		return this;
+	}
+
+	/**
+	 * Insert a new element before the selected element.
+	 * @param {HTMLElement} newElement - The new element to insert before the selected element.
+	 * @returns {RQuery} The current RQuery instance for chaining.
+	 */
+	before(newElement) {
+		if (!(newElement instanceof HTMLElement)) {
+			throw new Error(`Element must be an HTMLElement`);
+		}
+
+		const parentElement = this.element.parentElement;
+
+		if (parentElement) {
+			parentElement.insertBefore(newElement, this.element);
+			return this;
+		} else {
+			throw new Error(`Element does not have a parent element`);
+		}
+	}
+
+	/**
+	 * Get or set the inner HTML of the selected element.
+	 * @param {string} [htmlContent] - Optional HTML content to set.
+	 * If not provided, the current inner HTML will be returned.
+	 * @returns {RQuery|string} The current RQuery instance for chaining when setting HTML content,
+	 * or the current inner HTML when getting.
+	 */
 
 	/**
 	 * Set the CSS style of the selected element.
