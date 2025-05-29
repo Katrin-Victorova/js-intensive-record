@@ -1,5 +1,6 @@
 import { Layout } from '@/components/layout/layout.component';
 import { NotFound } from '@/components/screens/not-found/not-found.component';
+
 import { ROUTES } from './routes.data';
 
 export class Router {
@@ -13,12 +14,12 @@ export class Router {
 		});
 
 		this.#handleRouteChange();
-		this.#handelLinks();
+		this.#handleLinks();
 	}
 
-	#handelLinks() {
+	#handleLinks() {
 		document.addEventListener('click', event => {
-			const target = event.target.closes('a');
+			const target = event.target.closest('a');
 
 			if (target) {
 				event.preventDefault();
