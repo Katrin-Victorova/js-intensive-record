@@ -36,6 +36,7 @@ export class UserItem extends ChildComponent {
 		this.update(this.user)
 
 		$R(this.element).click(this.onClick || this.#preventDefault.bind(this))
+
 		if (!this.onClick) $R(this.element).attr('disabled', '')
 		if (this.isGray) $R(this.element).addClass(styles.gray)
 
